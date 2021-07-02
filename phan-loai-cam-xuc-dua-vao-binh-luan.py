@@ -4,37 +4,6 @@ import spacy
 from spacy.util import minibatch, compounding
 import  matplotlib.pyplot as plt
 import numpy as np
-'''
-spaCy là một thư viện mã nguồn mở miễn phí để xử lý ngôn ngữ tự nhien nâng cao (NLP) bằng pytohn
-
-spaCy được thiết kế đặc biệt để sử dụng trong sản xuất và giúp bạn xây dựng các ứng dụng xly và "hiểu" khối lượng lớn văn bản.
-Nó có thể được sử dụng để xây dựng hệ thống khai thác thông tin hoặc hiểu ngôn ngữ tự nhiên, hoặc để xly trước vb cho deep 
-'''
-text = """Dave watched as the forest bruned up on the hill, only a few miles from his house. The car had been hastily packed and Marta was inside trying to round up the last of the pers. "Where could she be?" he wondered as he continued to wait for Marta to appear with the pets."""
-
-nlp = spacy.load("en_core_web_sm") # tải mô hình tiếng anh của spaCy
-doc = nlp(text) # mã hóa văn bản
-token_list = [token for token in doc]
-# print(token_list)
-# [Dave, watched, as, the, forest, bruned, up, on, the, hill, ,, only, a, few, miles, from, his, house, ., The, car, had, been, hastily, packed, and, Marta, was, inside, trying, to, round, up, the, last, of, the, pers, ., ", Where, could, she, be, ?, ", he, wondered, as, he, continued, to, wait, for, Marta, to, appear, with, the, pets, .]
-
-# LOẠI BỎ TỪ DỪNG 
-# .is_stop => lọc ra các từ dừng khỏi văn bản được mã hóa
-filtered_tokens = [token for token in doc if not token.is_stop]
-# print(filtered_tokens)
-# [Dave, watched, forest, bruned, hill, ,, miles, house, ., car, hastily, packed, Marta, inside, trying, round, pers, ., ", ?, ", wondered, continued, wait, Marta, appear, pets, .]
-
-# CHUẨN HÓA 
-# lEMMATIZATION (sự bổ sung )
-lemmas = [ f"Token: {token}, lemma = {token.lemma_}" for token in filtered_tokens]
-# .lemma_ : return the base form of the 
-"""A formatted string literal or f-string is a string literal that is prefixed with 'f' or 'F'. These strings may contain replacement fields, 
-which are expressions delimited by curly braces {}. While other string literals always have a constant value, formatted strings are really expressions evaluated at run time."""
-# print(lemmas)
-# ['Token: Dave, lemma = Dave', 'Token: watched, lemma = watch', 'Token: forest, lemma = forest', 'Token: bruned, lemma = brune', 'Token: hill, lemma = hill', 'Token: ,, lemma = ,', 'Token: miles, lemma = mile', 'Token: house, lemma = house', 'Token: ., lemma = .', 'Token: car, lemma = car', 'Token: hastily, lemma = hastily', 'Token: packed, lemma = pack', 'Token: Marta, lemma = Marta', 'Token: inside, lemma = inside', 'Token: trying, lemma = try', 'Token: round, lemma = round', 'Token: pers, lemma = per', 'Token: ., lemma = .', 'Token: ", lemma = "', 'Token: ?, lemma = ?', 'Token: ", lemma = "', 'Token: wondered, lemma = wonder', 'Token: continued, lemma = continue', 'Token: wait, lemma = wait', 'Token: Marta, lemma = Marta', 'Token: appear, lemma = appear', 'Token: pets, lemma = pet', 'Token: ., lemma = .']
-
-# VECTORIZING VĂN BẢN
-# print(filtered_tokens[0].vector)
 
 # SỬ DỤNG BỘ PHÂN LOẠI HỌC MÁY DỂ DỰ ĐOÁN CẢM XÚC 
 # Xây dựng cấu trúc thư mục của dl, tìm kiếm và mở các tệp văn bản,
