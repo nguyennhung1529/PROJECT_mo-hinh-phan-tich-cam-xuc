@@ -111,11 +111,7 @@ def train_model(
 
 		# training loop
 		print("Beginning training")
-		print("{:<10}\t{:<25}\t{:<25}\t{:<25}\t{:<25}".format("Iteration", 
-																"Loss", 
-																"Precision", 
-																"Recall", 
-																"F-core"))
+		print("{:<10}\t{:<25}\t{:<25}\t{:<25}\t{:<25}".format("Iteration", "Loss", "Precision", "Recall", "F-core"))
 		
 		loss_arr = []
 		precision_arr = []
@@ -171,12 +167,8 @@ def train_model(
 					textcat = textcat,
 					test_data = test_data
 				)
-				print("{:<10d}\t{:<25.15f}\t{:<25.15f}\t{:<25.15f}\t{:<25.15f}".format(i+1, 
-																			loss['textcat'], 
-																			evaluation_results['precision'], 
-																			evaluation_results['recall'], 
-																			evaluation_results['f_score'])
-																			)
+				print("{:<10d}\t{:<25.15f}\t{:<25.15f}\t{:<25.15f}\t{:<25.15f}".format(i+1, loss['textcat'], evaluation_results['precision'], evaluation_results['recall'], evaluation_results['f_score']))
+				
 				# lưu lại các giá trị dùng cho việc vẽ biểu đồ bên dưới
 				loss_arr.append(loss['textcat'])
 				precision_arr.append(evaluation_results['precision'])
